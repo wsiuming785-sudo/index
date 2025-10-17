@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>現代化接待處</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text-color: #333;
+            --bg-color: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode {
+            --text-color: #f5f5f5;
+            --card-bg: rgba(0, 0, 0, 0.2);
+            --bg-color: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .btn-modern {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        .btn-modern i {
+            margin-right: 8px;
+        }
+
+        .hidden-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden-section.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dark-mode .section-title {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mode-toggle" id="modeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <h1>現代化接待處</h1>
+            <p>專業、高效、美觀的接待解決方案</p>
+        </div>
+
+        <div class="card-grid">
+            <!-- 分台接待區 -->
+            <div class="glass-card">
+                <h2 class="section-title">分台接待</h2>
+                <p>系統將在 <span id="countdown">5</span> 秒後自動載入分台頁面</p>
+                <div class="countdown" id="countdownDisplay">5</div>
+                <p>如果您不想等待，也可以點擊下方按鈕立即前往</p>
+                <a href="https://xxxxxx.netlify.app/index/indexAA.html" class="btn-modern w-100 mt-3">
+                    <i class="fas fa-external-link-alt"></i> 立即前往分台
+                </a>
+            </div>
+
+
+  <!-- 導航頁 -->
+            <div class="glass-card">
+                <h2 class="section-title">導航頁</h2>
+                <p>導航頁</p>
+                <p>如果您不想等待，也可以點擊下方按鈕立即前往</p>
+                <a href="https://sakasaka.22web.org/" class="btn-modern w-100 mt-3">
+                    <i class="fas fa-external-link-alt"></i> 立即前往分台
+                </a>
+            </div>
+
+
+
+          
+            <!-- 接待處區 -->
+            <div class="glass-card">
+                <h2 class="section-title">接待處</h2>
+                <p>前台和主台接待功能</p>
+                <div class="instructions">
+                    <p><i class="fas fa-info-circle"></i> 提示：連續按下鍵盤上的 <kbd>S</kbd> 鍵 8 次以顯示接待處</p>
+                    <p>已按下 <span id="keyCount">0</span> 次</p>
+                </div>
+                
+                <div class="hidden-section" id="receptionSection">
+                    <div class="text-center mt-4">
+                        <a href="https://saka751.netlify.app/index1.html" class="btn-modern">
+                            <i class="fas fa-user-headset"></i> 進入接待處
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 倒數計時功能
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        const countdownDisplay = document.getElementById('countdownDisplay');
+        
+        function updateCountdown() {
+            countdown--;
+            countdownElement.textContent = countdown;
+            countdownDisplay.textContent = countdown;
+            
+            if (countdown <= 0) {
+                window.location.href = "https://xxxxxx.netlify.app/index/indexAA.html";
+            } else {
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        
+        // 啟動倒數計時
+        setTimeout(updateCountdown, 1000);
+        
+        // 黑暗模式切換
+        const modeToggle = document.getElementById('modeToggle');
+        const body = document.body;
+        
+        modeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            const icon = modeToggle.querySelector('i');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+        
+        // S鍵計數功能
+        let sKeyCount = 0;
+        const keyCountElement = document.getElementById('keyCount');
+        const receptionSection = document.getElementById('receptionSection');
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 's' || event.key === 'S') {
+                sKeyCount++;
+                keyCountElement.textContent = sKeyCount;
+                
+                if (sKeyCount >= 8) {
+                    receptionSection.classList.add('show');
+                }
+                
+                // 5秒後重置計數
+                clearTimeout(resetTimer);
+                resetTimer = setTimeout(() => {
+                    sKeyCount = 0;
+                    keyCountElement.textContent = sKeyCount;
+                }, 5000);
+            }
+        });
+        
+        let resetTimer;
+    </script>
+</body>
+</html>
