@@ -231,7 +231,7 @@
                 <p>系統將在 <span id="countdown">5</span> 秒後自動載入分台頁面</p>
                 <div class="countdown" id="countdownDisplay">5</div>
                 <p>如果您不想等待，也可以點擊下方按鈕立即前往</p>
-                <a href="https://xxxxxx.netlify.app/index/indexAA.html" class="btn-modern w-100 mt-3">
+                <a href="indexAA.html" class="btn-modern w-100 mt-3">
                     <i class="fas fa-external-link-alt"></i> 立即前往分台
                 </a>
             </div>
@@ -282,7 +282,7 @@
             countdownDisplay.textContent = countdown;
             
             if (countdown <= 0) {
-                window.location.href = "https://xxxxxx.netlify.app/index/indexAA.html";
+                window.location.href = "indexAA.html";
             } else {
                 setTimeout(updateCountdown, 1000);
             }
