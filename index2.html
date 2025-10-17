@@ -173,6 +173,23 @@
             font-size: 0.9rem;
         }
 
+        .secret-code {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .secret-code span {
+            margin-left: 8px;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -188,6 +205,10 @@
             
             .logo h1 {
                 font-size: 2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -215,38 +236,38 @@
                 </a>
             </div>
 
-
-  <!-- 導航頁 -->
+            <!-- 導航頁區 -->
             <div class="glass-card">
                 <h2 class="section-title">導航頁</h2>
-                <p>導航頁</p>
-                <p>如果您不想等待，也可以點擊下方按鈕立即前往</p>
-                <a href="https://sakasaka.22web.org/" class="btn-modern w-100 mt-3">
-                    <i class="fas fa-external-link-alt"></i> 立即前往分台
-                </a>
-            </div>
-
-
-
-          
-            <!-- 接待處區 -->
-            <div class="glass-card">
-                <h2 class="section-title">接待處</h2>
-                <p>前台和主台接待功能</p>
-                <div class="instructions">
-                    <p><i class="fas fa-info-circle"></i> 提示：連續按下鍵盤上的 <kbd>S</kbd> 鍵 8 次以顯示接待處</p>
-                    <p>已按下 <span id="keyCount">0</span> 次</p>
-                </div>
-                
-                <div class="hidden-section" id="receptionSection">
-                    <div class="text-center mt-4">
-                        <a href="https://saka751.netlify.app/index1.html" class="btn-modern">
-                            <i class="fas fa-user-headset"></i> 進入接待處
-                        </a>
-                    </div>
+                <p>快速訪問我們的導航頁面，獲取更多資源和連結</p>
+                <div class="text-center mt-4">
+                    <a href="https://sakasaka.22web.org/" class="btn-modern">
+                        <i class="fas fa-compass"></i> 前往導航頁
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- 完全隱藏的接待處區 -->
+    <div class="hidden-section" id="receptionSection">
+        <div class="container">
+            <div class="glass-card">
+                <h2 class="section-title">接待處</h2>
+                <p>前台和主台接待功能</p>
+                <div class="text-center mt-4">
+                    <a href="https://saka751.netlify.app/index1.html" class="btn-modern">
+                        <i class="fas fa-user-headset"></i> 進入接待處
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 秘密代碼顯示 -->
+    <div class="secret-code">
+        <i class="fas fa-key"></i>
+        <span id="keyCount">0</span>/8
     </div>
 
     <script>
